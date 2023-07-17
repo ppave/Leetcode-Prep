@@ -3,7 +3,7 @@ import Foundation
 class Node<Value> {
     var value: Value
     var next: Node?
-    var previous: Node?
+    weak var previous: Node?
     
     init(value: Value, next: Node? = nil) {
         self.value = value
