@@ -1,10 +1,10 @@
 import Foundation
 
 class HashTable<Key: Hashable, Value> {
-    private typealias Element  = (key: Key, value: Value)
-    private typealias Bucket = [Element]
-    private var buckets: [Bucket]
-    private var count = 0
+    typealias Element  = (key: Key, value: Value)
+    typealias Bucket = [Element]
+    var buckets: [Bucket]
+    var count = 0
     
     var isEmpty: Bool { return buckets.count == 0 }
     
@@ -15,7 +15,7 @@ class HashTable<Key: Hashable, Value> {
     }
     
     private func index(forKey key: Key) -> Int {
-        return abs(key.hashValue) % buckets.count
+        abs(key.hashValue) % buckets.count
     }
     
     /*
@@ -38,7 +38,7 @@ class HashTable<Key: Hashable, Value> {
     }
     
     func value(forKey key: Key) -> Value? {
-        let index  = self.index(forKey: key)
+        let index = self.index(forKey: key)
         for element in buckets[index] {
             if element.key == key {
                 return element.value
@@ -49,7 +49,7 @@ class HashTable<Key: Hashable, Value> {
     
     @discardableResult
     func updateValue(_ value: Value, forKey key: Key) -> Value? {
-        let index  = self.index(forKey: key)
+        let index = self.index(forKey: key)
         //update
         for (i, element) in buckets[index].enumerated() {
             if element.key  == key {
