@@ -1,7 +1,11 @@
 import Foundation
 
-// Facilitates fast lookup, addition, and removal operations.
-// Each operation has an average time complexity of O(log n)
+// A binary search tree (or BST) is a data structure that facilitates fast lookup, addition, and removal operations.
+// Each operation has an average time complexity of O(log n).
+
+// A binary search tree achieves this performance by imposing two rules on the binary tree
+// - The value of a left child must be less than the value of its parent.
+// - The value of a right child must be greater than or equal to the value of its parent.
 
 class BinaryNode<T> {
     var value: T
