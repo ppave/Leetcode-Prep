@@ -1,5 +1,12 @@
 import Foundation
 
+// A heap is a complete binary tree, also known as a binary heap, that can be constructed using an array.
+// Heaps come in two flavors: Max / Min
+// Some useful applications of a heap include:
+// - Calculating the minimum or maximum element of a collection
+// - Heap Sort
+// - Constructing a priority queue
+
 struct Heap<Element: Equatable> {
     var elements: [Element] = []
     let sort: (Element, Element) -> Bool
@@ -39,6 +46,7 @@ struct Heap<Element: Equatable> {
         (index - 1) / 2
     }
     
+    // A basic remove operation simply removes the root node from the heap
     mutating func remove() -> Element? {
         guard !isEmpty else {
             return nil
