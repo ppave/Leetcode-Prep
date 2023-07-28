@@ -27,7 +27,7 @@ func insertionSort<Element>(_ array: inout [Element]) where Element: Comparable 
     }
 }
 
-// Merge Sort (split & merge) - average time complxity Θ(n log n), space compelxity O(n log n)
+// Merge Sort (split & merge) Θ(n log n)
 func mergeSort<Element: Comparable>(_ array: [Element]) -> [Element] {
     guard array.count > 1 else {
         return array
@@ -38,6 +38,7 @@ func mergeSort<Element: Comparable>(_ array: [Element]) -> [Element] {
     return merge(left, right)
 }
 
+// Take two sorted arrays and combine them while retaining the sort order.
 func merge<Element: Comparable>(_ left: [Element], _ right: [Element]) -> [Element] {
     var leftIndex = 0, rightIndex = 0
     var result: [Element] = []
@@ -66,7 +67,7 @@ func merge<Element: Comparable>(_ left: [Element], _ right: [Element]) -> [Eleme
     return result
 }
 
-//Heap Sort
+//Heap Sort O(n log n)
 extension Heap {
     public mutating func sort() -> [Element] {
         for index in elements.indices.reversed() {
@@ -78,13 +79,12 @@ extension Heap {
 }
 
 // Quick Sort O(n log n)
+// One important feature of Quicksort is choosing a pivot point.
 func quicksort<T: Comparable>(_ a: [T]) -> [T] {
   guard a.count > 1 else { return a }
-
   let pivot = a[a.count/2]
   let less = a.filter { $0 < pivot }
   let equal = a.filter { $0 == pivot }
   let greater = a.filter { $0 > pivot }
-
   return quicksort(less) + equal + quicksort(greater)
 }

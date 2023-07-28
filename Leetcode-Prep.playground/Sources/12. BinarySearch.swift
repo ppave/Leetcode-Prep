@@ -23,7 +23,7 @@ func linearSearch<T: Equatable>(_ array: [T], _ value: T) -> Int? {
     return nil
 }
 
-// O(log n), requires the array to be sorted & to support RandomAccessCollection
+// Binary Search O(log n), requires the array to be sorted & to support RandomAccessCollection
 extension RandomAccessCollection where Element: Comparable {
     func binarySearch(for value: Element, in range: Range<Index>? = nil) -> Index? {
         let range = range ?? startIndex..<endIndex
