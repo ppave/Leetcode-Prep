@@ -1,6 +1,7 @@
 import Foundation
 
 // https://github.com/ppave/AlgorithmExperiments/blob/master/Sources/DataStructuresAlgorithms/Algorithms/SortingAlgorithms.swift
+// https://www.bigocheatsheet.com
 
 // The Swift Standard Library sort algorithm uses a hybrid of sorting approaches
 // with insertion sort being used for small (<20 element) unsorted partitions.
@@ -87,6 +88,3 @@ func quicksort<T: Comparable>(_ a: [T]) -> [T] {
 
   return quicksort(less) + equal + quicksort(greater)
 }
-
-
-// Merge Sort O(n log n)
