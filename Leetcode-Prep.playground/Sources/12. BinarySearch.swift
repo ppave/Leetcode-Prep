@@ -1,5 +1,7 @@
 import Foundation
 
+// https://github.com/ppave/AlgorithmExperiments/blob/master/Sources/DataStructuresAlgorithms/Algorithms/SearchingAlgorithms.swift
+
 // Binary search is one of the most efficient searching algorithms with a time complexity of O(log n).
 // This is comparable with searching for an element inside a balanced binary search tree.
 
@@ -10,8 +12,18 @@ import Foundation
 // consider doing some up-front sorting
 // so you can use binary searching to reduce it down to the cost of the sort at O(n log n).
 
-// O(log n)
-// Rrequires the array to be sorted & to support RandomAccessCollection
+
+
+
+//Linear Search, O(n)
+func linearSearch<T: Equatable>(_ array: [T], _ value: T) -> Int? {
+    for (index, object) in array.enumerated() where object == value {
+        return index
+    }
+    return nil
+}
+
+// O(log n), requires the array to be sorted & to support RandomAccessCollection
 extension RandomAccessCollection where Element: Comparable {
     func binarySearch(for value: Element, in range: Range<Index>? = nil) -> Index? {
         let range = range ?? startIndex..<endIndex
