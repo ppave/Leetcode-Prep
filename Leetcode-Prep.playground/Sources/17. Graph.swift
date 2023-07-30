@@ -147,4 +147,12 @@ func exampleGraph() {
     graph.add(.undirected, from: washingtonDC, to: seattle, weight: 277)
     graph.add(.undirected, from: sanFrancisco, to: seattle, weight: 218)
     graph.add(.undirected, from: austinTexas, to: sanFrancisco, weight: 297)
+    
+    // How much is a flight from Singapore to Tokyo?
+    print(graph.weight(from: singapore, to: tokyo))
+    
+    // San Francisco Outgoing Flights
+    for edge in graph.edges(from: sanFrancisco) {
+        print("from: \(edge.source) to: \(edge.destination)")
+    }
 }
