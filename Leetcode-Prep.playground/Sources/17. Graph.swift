@@ -123,6 +123,63 @@ class AdjacencyMatrix<T>: Graph {
     }
 }
 
+// Breadth-First Search (BFS)
+extension Graph where Element: Hashable {
+    func breadthFirstSearch(from source: Vertex<Element>) -> [Vertex<Element>] {
+        var queue = QueueStack<Vertex<Element>>()
+        var enqueued: Set<Vertex<Element>> = []
+        var visited: [Vertex<Element>] = []
+        
+        queue.enqueue(source)
+        enqueued.insert(source)
+        
+        while let vertex = queue.dequeue() {
+            visited.append(vertex)
+            let neighborEdges = edges(from: vertex)
+            neighborEdges.forEach { edge in
+                if !enqueued.contains(edge.destination) {
+                    queue.enqueue(edge.destination)
+                    enqueued.insert(edge.destination)
+                }
+            }
+        }
+        
+        return visited
+    }
+}
+
+// Depth-First Search (DFS)
+extension Graph where Element: Hashable {
+    func depthFirstSearch(from source: Vertex<Element>) -> [Vertex<Element>] {
+        var stack: Stack<Vertex<Element>> = []
+        var pushed: Set<Vertex<Element>> = []
+        var visited: [Vertex<Element>] = []
+        
+        stack.push(source)
+        pushed.insert(source)
+        visited.append(source)
+        
+    outer: while let vertex = stack.peek() {
+        let neighbors = edges(from: vertex)
+        guard !neighbors.isEmpty else {
+            stack.pop()
+            continue
+        }
+        for edge in neighbors {
+            if !pushed.contains(edge.destination) {
+                stack.push(edge.destination)
+                pushed.insert(edge.destination)
+                visited.append(edge.destination)
+                continue outer
+            }
+        }
+        stack.pop()
+    }
+        
+        return visited
+    }
+}
+
 func exampleGraph() {
     let graph = AdjacencyMatrix<String>()
     
@@ -154,5 +211,16 @@ func exampleGraph() {
     // San Francisco Outgoing Flights
     for edge in graph.edges(from: sanFrancisco) {
         print("from: \(edge.source) to: \(edge.destination)")
+    }
+    
+    
+    let vertices = graph.breadthFirstSearch(from: singapore)
+    vertices.forEach { vertex in
+        print(vertex)
+    }
+    
+    let vertices2 = graph.depthFirstSearch(from: singapore)
+    vertices2.forEach { vertex in
+        print(vertex)
     }
 }
